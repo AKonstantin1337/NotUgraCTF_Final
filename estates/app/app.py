@@ -8,6 +8,7 @@ import os
 import random
 import sqlite3
 import time
+import uuid
 
 from jinja2 import FileSystemLoader
 
@@ -130,7 +131,7 @@ def build_app():
                 max_urt_id = d[0][0]
             else:
                 max_urt_id = 0
-            t = int(time.time())
+            t = int(uuid.uuid1())
             if t != max_urt_id:
                 q("INSERT INTO urts (id, description) VALUES (?, ?)", (t, form.get("description", "")))
                 q("INSERT INTO participations (user_id, urt_id) VALUES (?, ?)", (max(user), t))
