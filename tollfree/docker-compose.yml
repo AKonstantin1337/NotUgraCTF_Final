@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    tollfree:
+        build: .
+        volumes:
+            - ./conf:/etc/asterisk
+        network_mode: host
