@@ -14,7 +14,7 @@ from jinja2 import FileSystemLoader
 BASE_DIR = os.path.dirname(__file__)
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
-RB = str(random.getrandbits(1441))
+RB = str(random.getrandbits(1488))
 
 create_db = not os.path.exists("/data/data.db")
 db = sqlite3.connect("/data/data.db")
@@ -37,14 +37,14 @@ def get_user(request):
     cookie = request.cookies.get("urtlogin", "")
     try:
         d, s = cookie.split(" ")
-        if hashlib.sha1((d + RB).encode()).hexdigest() != s:
+        if hashlib.sha256((d + RB + "don't touch my cookie!!!").encode()).hexdigest() != s:
             return {i for i in range(0)}
         return {int(i) for i in d.split(",")}
     except:
         return {i for i in range(0)}
 
 def get_user_str(user):
-    return str(sum(user)) + " " + hashlib.sha1((str(sum(user)) + RB).encode()).hexdigest()
+    return str(sum(user)) + " " + hashlib.sha256((str(sum(user)) + RB + "don't touch my cookie!!!").encode()).hexdigest()
 
 def build_app():
     app = aiohttp.web.Application()
