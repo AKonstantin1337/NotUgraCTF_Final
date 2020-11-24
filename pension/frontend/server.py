@@ -37,7 +37,7 @@ class ChangePasscodeForm(FlaskForm):
 
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "seriousbusiness"
+app.config["SECRET_KEY"] = "NotUourFuckingBusines"
 
 
 def run_query(name, populate):
