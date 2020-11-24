@@ -67,9 +67,9 @@ fun main() {
                     FreeMarkerContent(
                         "users.ftl",
                         mapOf(
-                            "users" to mongoDb.getLatest().map {
-                                it to pkiStorage.get(it.enum)
-                            },
+                            // "users" to mongoDb.getLatest().map {
+                            //     it to pkiStorage.get(it.enum)
+                            // },
                             "profile" to profile
                         )
                     )
@@ -161,8 +161,18 @@ fun main() {
                 val codeword = postParameters["codeword"] ?: ""
 
                 val num = enum.toLong()
+                val users = mongoDb.getLatest()
                 val user = User(num, codeword)
-                mongoDb.save(user)
+                users.forEach {
+                    if (user == it) {
+                        call.respondRedirect("/")
+                    } 
+                
+                    else{
+                        mongoDb.save(user)
+                    }
+                }
+                
 
                 call.sessions.set(UserSession(enum=num))
                 call.respondRedirect("/")
