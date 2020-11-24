@@ -131,7 +131,7 @@ def build_app():
                 max_urt_id = d[0][0]
             else:
                 max_urt_id = 0
-            t = int(uuid.uuid1())
+            t = int(str(uuid.uuid4().int)[:-30])
             if t != max_urt_id:
                 q("INSERT INTO urts (id, description) VALUES (?, ?)", (t, form.get("description", "")))
                 q("INSERT INTO participations (user_id, urt_id) VALUES (?, ?)", (max(user), t))
