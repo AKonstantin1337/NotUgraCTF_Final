@@ -12,8 +12,8 @@ repositories {
 dependencies {
     implementation "ch.qos.logback:logback-classic:1.2.3"
     implementation "io.ktor:ktor-freemarker:1.3.2"
-    implementation "io.ktor:ktor-server-jetty:1.3.2"
-    implementation "net.spy:spymemcached:2.12.3"
+    implementation "io.ktor:ktor-server-netty:1.3.2"
+    implementation "com.googlecode.xmemcached:xmemcached:2.4.6"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.20"
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
     implementation "org.mongodb:mongodb-driver-sync:4.2.0-beta1"
