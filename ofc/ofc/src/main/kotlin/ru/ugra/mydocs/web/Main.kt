@@ -16,7 +16,7 @@ import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
-import io.ktor.server.jetty.Jetty
+import io.ktor.server.netty.Netty
 import io.ktor.sessions.Sessions
 import io.ktor.sessions.SessionStorageMemory
 import io.ktor.sessions.cookie
@@ -40,7 +40,7 @@ fun main() {
     val pkiStorage = PkiStorage()
     val signer = Signer()
 
-    embeddedServer(Jetty, 8080) {
+    embeddedServer(Netty, 8080) {
         install(FreeMarker) {
             templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
         }
